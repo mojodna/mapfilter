@@ -56,7 +56,7 @@ const styles = {
   }
 }
 
-const FeatureModal = ({color, media, data, title, subtitle, onCloseClick}) => (
+const FeatureModal = ({color, label, media, data, title, subtitle, onCloseClick}) => (
   <Card
     className='card'
     style={styles.card}
@@ -64,7 +64,7 @@ const FeatureModal = ({color, media, data, title, subtitle, onCloseClick}) => (
     zDepth={2}>
     <CardHeader
       style={styles.header}
-      avatar={<MarkerIcon color={color} style={styles.markerIcon} />}
+      avatar={<MarkerIcon color={color} style={styles.markerIcon} label={label} />}
       title={<FormattedMessage {...msg('field_value')(title)} />}
       subtitle={<FormattedMessage {...msg('field_value')(subtitle)} />}>
       { onCloseClick &&
