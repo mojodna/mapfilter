@@ -58,6 +58,7 @@ const styles = {
 
 const FeatureModal = ({color, media, data, title, subtitle, onCloseClick}) => (
   <Card
+    className='card'
     style={styles.card}
     containerStyle={styles.cardContainerStyle}
     zDepth={2}>
