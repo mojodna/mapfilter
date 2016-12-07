@@ -7,6 +7,7 @@ const MFPropTypes = require('../util/prop_types')
 const MapView = require('../components/map_view')
 const getFieldMapping = require('../selectors/field_mapping')
 const getFilteredFeatures = require('../selectors/filtered_features')
+const getLabeledFeatures = require('../selectors/labeled_features')
 const getMapboxFilter = require('../selectors/mapbox_filter')
 const getMapGeoJSON = require('../selectors/map_geojson')
 
@@ -37,11 +38,17 @@ class ReportContainer extends React.Component {
   render () {
     const { features } = this.props
 
+    const geojson = {
+      type: 'FeatureCollection',
+      features
+    }
+
     return (
       <div className='report container' style={styles.report}>
         <h2>{ features.length } Observations</h2>
         <MapView
           {...this.props}
+          geojson={geojson}
           style={styles.mapView}
           disableScrollToZoom
           labelPoints
@@ -62,7 +69,7 @@ class ReportContainer extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    features: getFilteredFeatures(state),
+    features: getLabeledFeatures(getFilteredFeatures(state)),
     fieldMapping: getFieldMapping(state),
     filter: getMapboxFilter(state),
     geojson: getMapGeoJSON(state)

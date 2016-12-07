@@ -1,5 +1,9 @@
 const fs = require('fs')
 const path = require('path')
+
+const getFlattenedFeatures = require('../selectors/flattened_features')
+const getLabeledFeatures = require('../selectors/labeled_features')
+
 /**
  * Attempt to parse a datestring, returning `false` if it can't be parsed
  * @param {string} possibleDate [description]
@@ -13,14 +17,14 @@ function reviveDate (k, v) {
 }
 
 const markersJson = fs.readFileSync(path.join(__dirname, '/../../statics/sample.geojson'), 'utf8')
-const markers = JSON.parse(markersJson, reviveDate).features
+const markers = getLabeledFeatures(getFlattenedFeatures(JSON.parse(markersJson, reviveDate)))
 
 const features = (state = markers, action) => {
   switch (action.type) {
     case 'ADD_FEATURES':
       return [...state, ...action.payload]
     case 'REPLACE_FEATURES':
-      return action.payload
+      return getLabeledFeatures(getFlattenedFeatures(action.payload))
   }
   return state
 }

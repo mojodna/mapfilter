@@ -1,11 +1,10 @@
 var ff = require('feature-filter-geojson')
 const { createSelector } = require('reselect')
 
-const getFlattenedFeatures = require('./flattened_features')
 const getMapboxFilter = require('./mapbox_filter')
 
 const datesToNumbers = createSelector(
-  getFlattenedFeatures,
+  state => state.features,
   features => features.map(feature => {
     const props = feature.properties
     const newProps = Object.assign({}, props)
