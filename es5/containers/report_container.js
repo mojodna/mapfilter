@@ -87,7 +87,8 @@ var ReportContainer = function (_React$Component) {
           return React.createElement(FeatureModal, {
             key: id,
             id: feature.id,
-            label: feature.properties.__mf_label
+            label: feature.properties.__mf_label,
+            restrictHeight: false
           });
         })
       );

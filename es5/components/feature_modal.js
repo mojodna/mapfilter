@@ -36,6 +36,9 @@ var styles = {
     maxHeight: '100%',
     width: '100%'
   },
+  cardUnrestricted: {
+    width: '100%'
+  },
   cardContainerStyle: {
     flex: 1,
     flexDirection: 'column',
@@ -78,12 +81,13 @@ var FeatureModal = function FeatureModal(_ref) {
       data = _ref.data,
       title = _ref.title,
       subtitle = _ref.subtitle,
-      onCloseClick = _ref.onCloseClick;
+      onCloseClick = _ref.onCloseClick,
+      restrictHeight = _ref.restrictHeight;
   return React.createElement(
     Card,
     {
       className: 'card',
-      style: styles.card,
+      style: restrictHeight ? styles.card : styles.cardUnrestricted,
       containerStyle: styles.cardContainerStyle,
       zDepth: 2 },
     React.createElement(
