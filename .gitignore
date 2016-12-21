@@ -1,0 +1,16 @@
+# build dir
+dist
+build
+
+# deps
+node_modules
+
+# private keys
+key.pem
+
+# random temp files
+.DS_Store
+npm-debug.log
+secrets.txt
+.env
+es5/
